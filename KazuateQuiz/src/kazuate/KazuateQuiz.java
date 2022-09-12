@@ -1,18 +1,27 @@
 package kazuate;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class KazuateQuiz {
 	public static void main(String[] args) {
+
 		//ゲームの説明
 		System.out.println("0～9でランダムに生成される3つの数のうち、どれか1つの数字を当ててください。");
 		System.out.println("5回まで挑戦できます。");
 		System.out.println("では、スタート!" + "\n");
-		//生成されたランダム値
-		int[] numbers = comanswer();
-		//answer が true になったら数あてクイズが終了する。または、ループが5回まわったらゲームを終了する。
-		boolean answer = false;
+
+		//ランダム値 0～9 を含む、int型の配列生成
+		int[] numbers = new Random().ints(3, 0, 9).toArray();
+
+		//int型配列をリストへ変換
+		List<Integer> generateNumbers = new ArrayList<>(numbers.length);
+		for (int i : numbers) {
+			generateNumbers.add(i);
+		}
+
+		//generateNumbers が true だったら数あてクイズが終了する。または、ループが5回まわったらゲームを終了する。
 		for (int i = 0; i < 5; i++) {
 			int input;
 			//ユーザーの入力
@@ -29,16 +38,11 @@ public class KazuateQuiz {
 					System.err.println("0～9の範囲で入力してください。" + "\n");
 				}
 			}
-			//正解判定
-			for (int num : numbers) {
-				if (num == input) {
-					answer = true;
-					System.out.println("アタリ!");
-				}
-			}
-			//判定結果
-			if (answer == true) {
-				System.out.println("答え：" + Arrays.toString(numbers));
+
+			//正誤判定
+			if (generateNumbers.contains(input)) {
+				System.out.println("アタリ!");
+				System.out.println("答え：" + generateNumbers);
 				System.out.println("また挑戦してね!");
 				System.out.println("~~~ ゲーム終了 ~~~");
 				break;
@@ -46,15 +50,9 @@ public class KazuateQuiz {
 				System.out.println("ハズレ!もう一度挑戦!" + "\n");
 			} else {
 				System.out.println("~~~ ゲームオーバー ~~~");
-				System.out.println("答え：" + Arrays.toString(numbers));
+				System.out.println("答え：" + generateNumbers);
 				System.out.println("また挑戦してね!");
 			}
 		}
-	}
-
-	//ランダム値 0～9 を含む、int型の配列生成メソッド
-	public static int[] comanswer() {
-		int[] numbers = new Random().ints(3, 0, 9).toArray();
-		return numbers;
 	}
 }
