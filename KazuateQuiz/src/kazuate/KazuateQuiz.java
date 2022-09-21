@@ -16,12 +16,12 @@ public class KazuateQuiz {
 		int[] numbers = new Random().ints(3, 0, 9).toArray();
 
 		//int型配列をリストへ変換
-		List<Integer> generateNumbers = new ArrayList<>(numbers.length);
+		List<Integer> numbersList = new ArrayList<>(numbers.length);
 		for (int i : numbers) {
-			generateNumbers.add(i);
+			numbersList.add(i);
 		}
 
-		//generateNumbers が true だったら数あてクイズが終了する。または、ループが5回まわったらゲームを終了する。
+		//numbersList に input値が含まれていたら数あてクイズが終了する。または、ループが5回まわったらゲームを終了する。
 		for (int i = 0; i < 5; i++) {
 			int input;
 			//ユーザーの入力
@@ -40,9 +40,9 @@ public class KazuateQuiz {
 			}
 
 			//正誤判定
-			if (generateNumbers.contains(input)) {
+			if (numbersList.contains(input)) {
 				System.out.println("アタリ!");
-				System.out.println("答え：" + generateNumbers);
+				System.out.println("答え：" + numbersList);
 				System.out.println("また挑戦してね!");
 				System.out.println("~~~ ゲーム終了 ~~~");
 				break;
@@ -50,7 +50,7 @@ public class KazuateQuiz {
 				System.out.println("ハズレ!もう一度挑戦!" + "\n");
 			} else {
 				System.out.println("~~~ ゲームオーバー ~~~");
-				System.out.println("答え：" + generateNumbers);
+				System.out.println("答え：" + numbersList);
 				System.out.println("また挑戦してね!");
 			}
 		}
