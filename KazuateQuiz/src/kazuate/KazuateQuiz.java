@@ -32,10 +32,10 @@ public class KazuateQuiz {
 					if (0 <= input && input < 10) {
 						break;
 					} else {
-						System.err.println("0～9の範囲で入力してください。" + "\n");
+						System.out.println("0～9の範囲で入力してください。" + "\n");
 					}
 				} catch (Exception e) {
-					System.err.println("0～9の範囲で入力してください。" + "\n");
+					System.out.println("0～9の範囲で入力してください。" + "\n");
 				}
 			}
 
