@@ -1,8 +1,8 @@
 package kazuate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class KazuateQuiz {
 	public static void main(String[] args) {
@@ -16,10 +16,7 @@ public class KazuateQuiz {
 		int[] numbers = new Random().ints(3, 0, 9).toArray();
 
 		//int型配列をリストへ変換
-		List<Integer> numbersList = new ArrayList<>(numbers.length);
-		for (int i : numbers) {
-			numbersList.add(i);
-		}
+		List<Integer> numbersList = IntStream.of(numbers).boxed().toList();
 
 		//numbersList に input値が含まれていたら数あてクイズが終了する。または、ループが5回まわったらゲームを終了する。
 		for (int i = 0; i < 5; i++) {
